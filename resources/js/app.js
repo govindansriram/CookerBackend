@@ -12,4 +12,16 @@ import './bootstrap';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import './components/Example';
+require('./bootstrap');
+
+ // Register React components
+require('./main');
+require('./Cook');
+require('./components/home/home');
+require('./components/login/login');
+require('./components/post/post');
+require('./components/show/show');
+require('./components/place/place');
+require('./components/navbar/navbar');
+require('./components/protected/protected');
+require('./components/recipe/recipe');
