@@ -21,9 +21,10 @@ const Recipe = () => {
   return (
     <>
       <h1>Recipes</h1>
+      <h2>Post your Recipie</h2>
       {
         posts.map((post) => 
-          <Post {...post} />
+          post.type === 'F' && <Post key={post._id} {...post} />
         )
       }
     </>

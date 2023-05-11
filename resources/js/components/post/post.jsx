@@ -12,17 +12,17 @@ const StyledCard = styled(Card)`
 `;
 
 const Post = (props) => {
-    const {id, type, title, author, body, likes, dislikes} = props;
+    const {_id, type, title, author, body, likes, dislikes} = props;
     const navigate = useNavigate();
     const t = type === "F" ? "recipe" : "restaurant";
   return (
     <StyledCard>
-      <Meta onClick={() => navigate(`${id}`)}
+      <Meta onClick={() => navigate(`${_id}`)}
         title={title}
         description={`by ${author}`}
       />
       <Divider />
-      <ReactMarkdown onClick={() => navigate(`${type}/${id}`)}>{body}</ReactMarkdown>
+      <ReactMarkdown onClick={() => navigate(`${_id}`)}>{body}</ReactMarkdown>
       <Divider />
       <Button icon={<LikeOutlined />} shape="round">
         {likes} Likes
