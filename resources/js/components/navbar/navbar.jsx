@@ -5,10 +5,6 @@ import {Button} from "antd";
 import Logo from "../../assets/logo.png";
 
 const Header = styled.div`
-  z-index: 10;
-  position:fixed;
-  top:0;
-  left:0;
   width: 100%;
   display: flex;
   justify-content: space-between;

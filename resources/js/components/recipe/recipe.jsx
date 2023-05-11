@@ -3,24 +3,31 @@ import Post from '../post/post';
 import { getPosts } from '../../api/postApi';
 
 const Recipe = () => {
-    const [posts, setPosts] = React.useState([]);
+  const [posts, setPosts] = React.useState([]);
 
-    React.useEffect(() => {
-        const posts = async () => {
-            const response = await getPosts();
-            return response.posts;
-        }
+  React.useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await getPosts();
+        setPosts(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-        setPosts(posts);
-    }, []);
-
+    fetchPosts();
+  }, []);
 
   return (
     <>
-      <h1>Recipe</h1>
-      <Post id="1" type="F" title="Recipe 1" author="Author 1" body="Body 1" likes="1" dislikes="1" />
+      <h1>Recipes</h1>
+      {
+        posts.map((post) => 
+          <Post {...post} />
+        )
+      }
     </>
   );
-}
+};
 
 export default Recipe;
