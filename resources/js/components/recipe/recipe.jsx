@@ -17,6 +17,12 @@ const Recipe = () => {
   const [form] = Form.useForm();
   const name = localStorage.getItem("name");
 
+  const [searchPosts, setSearchPosts] = React.useState("");
+
+  const searchPostsArray = posts.filter((post) => {
+      return post.author.toLowerCase().includes(searchPosts.toLowerCase());
+  });
+
   const onFinish = async (values) => {
     try {
       const response = await createPost(
@@ -68,8 +74,9 @@ const Recipe = () => {
         </Form.Item>
       </Form>
       </StyledCard>
+      <Input value={searchPosts} onChange={(e) => setSearchPosts(e.target.value)} placeholder="Search by author"/>
       {
-        posts.map((post) => 
+        searchPostsArray.map((post) => 
           post.type === 'F' && <Post key={post._id} {...post} />
         )
       }

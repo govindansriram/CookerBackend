@@ -4,7 +4,7 @@ import Logo from "../../assets/logo.png";
 
 const Image = styled.img`
   width: 30%;
-  height: 30%;
+  height: 40%;
 `;
 
 const Home = () => {

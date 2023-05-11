@@ -43,3 +43,14 @@ export const createPost = async (title, author, body, type, image_link) => {
         return {};
     }
 }
+
+export const likePost = async (id, is_like) => {
+    const post = {is_like};
+    try {
+        const response = await axios.put(`${URL}/api/newPost/${id}`, post, { withCredentials: false });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return {};
+    }
+}

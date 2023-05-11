@@ -4,6 +4,7 @@ import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 import ReactMarkdown from 'react-markdown'
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { likePost } from '../../api/postApi';
 
 const { Meta } = Card;
 
@@ -16,6 +17,15 @@ const Post = (props) => {
     const {_id, type, title, author, body, likes, dislikes} = props;
     const navigate = useNavigate();
     const t = type === "F" ? "recipe" : "restaurant";
+
+    const handleLike = async (is_like) => {
+        try {
+            await likePost(_id, is_like);
+        } catch (error) {
+            console.log(error);
+        }
+      };
+
   return (
     <StyledCard>
       <Meta onClick={() => navigate(`${_id}`)}
@@ -25,10 +35,10 @@ const Post = (props) => {
       <Divider />
       <ReactMarkdown onClick={() => navigate(`${_id}`)}>{body}</ReactMarkdown>
       <Divider />
-      <Button icon={<LikeOutlined />} shape="round">
+      <Button icon={<LikeOutlined />} shape="round" onClick={() => handleLike(true)}>
         {likes} Likes
       </Button>
-      <Button icon={<DislikeOutlined />} shape="round">
+      <Button icon={<DislikeOutlined />} shape="round" onClick={() => handleLike(false)}>
         {dislikes} Dislikes
       </Button>
     </StyledCard>
