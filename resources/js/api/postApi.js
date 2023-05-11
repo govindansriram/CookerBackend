@@ -33,7 +33,7 @@ export const deletePost = async (id) => {
 }
 
 export const createPost = async (title, author, body, type, image_link) => {
-    const id = Math.floor(Math.random() * 100000000);
+    const id = Math.floor(Math.random() * 100000000) + "cook";
     const post = {title, id, author, body, type, image_link};
     try {
         const response = await axios.post(`${URL}/api/newPost`, post, { withCredentials: false });

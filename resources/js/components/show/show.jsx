@@ -1,13 +1,13 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { getPost } from '../../api/postApi';
-
+import { useParams, useNavigate } from 'react-router-dom';
+import { getPost, deletePost } from '../../api/postApi';
 
 const Show = () => {
   const params = useParams();
   const { id } = params;
   const name = localStorage.getItem("name");
   const [post, setPost] = React.useState(null);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const fetchPost = async () => {
@@ -21,6 +21,15 @@ const Show = () => {
 
     fetchPost();
   }, [id]);
+
+  const handleDelete = async () => {
+    try {
+      await deletePost(id);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (!post) {
     return <h1>Loading...</h1>;
@@ -36,7 +45,8 @@ const Show = () => {
         <p>Dislikes: {post.dislikes}</p>
       </div>
       <img src={post.image_link}/>
-      {name === post.author ? <button>Delete Post</button> : <></>}
+      <br/>
+      {name === post.author ? <button onClick={handleDelete}>Delete Post</button> : <></>}
     </>
   );
 };

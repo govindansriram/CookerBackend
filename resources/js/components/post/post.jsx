@@ -9,6 +9,7 @@ const { Meta } = Card;
 
 const StyledCard = styled(Card)`
     width: 1000px;
+    margin: 20px;
 `;
 
 const Post = (props) => {
