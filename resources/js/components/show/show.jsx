@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPost, deletePost } from '../../api/postApi';
+import ReactMarkdown from 'react-markdown'
+
 
 const Show = () => {
   const params = useParams();
@@ -39,7 +41,7 @@ const Show = () => {
     <>
       <h1>{post.title}</h1>
       <h3>By {post.author}</h3>
-      <p>{post.body}</p>
+      <ReactMarkdown>{post.body}</ReactMarkdown>
       <div>
         <p>Likes: {post.likes}</p>
         <p>Dislikes: {post.dislikes}</p>
